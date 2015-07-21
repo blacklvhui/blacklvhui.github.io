@@ -65,6 +65,81 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-指针的用法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/21/指针的用法/" class="article-date">
+  <time datetime="2015-07-21T11:46:58.000Z" itemprop="datePublished">2015-07-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/21/指针的用法/">指针的用法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>指针的一般定义方法：<br>int a = 1;<br>int <em>p = &a;<br>p为a的地址
+</em>p在数值上等于a<br>假设a被放在内存中地址1000的单元中，那么p的值为1000，*p的值为1。</p>
+<pre><code><span class="preprocessor">#<span class="keyword">include</span>&lt;iostream&gt;</span>
+
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>
+</span>{
+    <span class="keyword">char</span> a[<span class="number">2</span>]={<span class="string">'a'</span>,<span class="string">'b'</span>};
+
+    <span class="keyword">char</span> *p = &amp;a[<span class="number">0</span>];
+
+
+
+
+        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; ++*p &lt;&lt;<span class="built_in">std</span>::endl;
+<span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre><p>数组分配的是一段连续的内存<br>如果a[0]存的是a，假设a的地址为1000，在32位的系统中，char为4位，那么b的地址就是10004。<br>如果指针p指向数组a[]的首地址也就是a,那么++p就是指向数组a[]的首地址的下一个地址也就是b,所以输出的++*p就是b。</p>
+<pre><code><span class="preprocessor">#<span class="keyword">include</span>&lt;iostream&gt;</span>
+
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>
+</span>{
+    <span class="keyword">char</span> a[<span class="number">2</span>]={<span class="string">'a'</span>,<span class="string">'b'</span>};
+    <span class="keyword">int</span> b=<span class="number">9</span>;
+
+    <span class="keyword">int</span> *p = <span class="number">0</span>；
+
+    <span class="keyword">if</span>(a &gt;= b)
+        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; *p &lt;&lt;<span class="built_in">std</span>::endl;
+    <span class="keyword">else</span>
+    {     
+        r = p;
+        p = q;
+        q = r;
+
+        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; *p &lt;&lt;<span class="built_in">std</span>::endl;
+    }
+<span class="keyword">return</span> <span class="number">0</span>;
+} 
+</code></pre><p>上面的代码是对两个数排列大小，通过交换指针即可输出的为大的数，也就是指针p指向大的数的地址。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blacklvhui.github.io/2015/07/21/指针的用法/" data-id="cicdapade0001xrgewigyat6o" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-static-的使用方法" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/07/20/static-的使用方法/" class="article-date">
@@ -125,7 +200,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/20/static-的使用方法/" data-id="cicbwlch90001rugewnc4zfjd" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/20/static-的使用方法/" data-id="cicdapadh0002xrge51fs3vgg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -170,7 +245,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/17/hello-world/" data-id="cicbwlcgj0000rugev6q1317t" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/17/hello-world/" data-id="cicdapacr0000xrgejx12l3x0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -195,7 +270,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -205,6 +280,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/07/21/指针的用法/">指针的用法</a>
+          </li>
         
           <li>
             <a href="/2015/07/20/static-的使用方法/">static 的使用方法</a>
