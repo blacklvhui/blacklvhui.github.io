@@ -3,17 +3,39 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2015 | Blacklvhui</title>
+  <title>类的使用方法2 | Blacklvhui</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="this is lvhui&apos;s hexo">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Blacklvhui">
-<meta property="og:url" content="http://blacklvhui.github.io/archives/2015/index.html">
+  <meta name="description" content="pragma mark - Get&amp;amp;Set
+int identity() const { return identity_; }
+void set_identity(int identity) { identity_ = identity; }
+//set一般是赋值操作，get一般是取值操作
+遍历操作
+for (auto p : users)
+       {
+           p-&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="类的使用方法2">
+<meta property="og:url" content="http://blacklvhui.github.io/2015/07/23/关于类和指针的用法（2）/index.html">
 <meta property="og:site_name" content="Blacklvhui">
-<meta property="og:description" content="this is lvhui&apos;s hexo">
+<meta property="og:description" content="pragma mark - Get&amp;amp;Set
+int identity() const { return identity_; }
+void set_identity(int identity) { identity_ = identity; }
+//set一般是赋值操作，get一般是取值操作
+遍历操作
+for (auto p : users)
+       {
+           p-&amp;">
+<meta property="og:updated_time" content="2015-07-23T11:44:07.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blacklvhui">
-<meta name="twitter:description" content="this is lvhui&apos;s hexo">
+<meta name="twitter:title" content="类的使用方法2">
+<meta name="twitter:description" content="pragma mark - Get&amp;amp;Set
+int identity() const { return identity_; }
+void set_identity(int identity) { identity_ = identity; }
+//set一般是赋值操作，get一般是取值操作
+遍历操作
+for (auto p : users)
+       {
+           p-&amp;">
   
     <link rel="alternative" href="/atom.xml" title="Blacklvhui" type="application/atom+xml">
   
@@ -63,115 +85,66 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/07/23/关于类和指针的用法（2）/" class="archive-article-date">
-  <time datetime="2015-07-23T10:35:40.000Z" itemprop="datePublished">7月 23</time>
+        <section id="main"><article id="post-关于类和指针的用法（2）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/23/关于类和指针的用法（2）/" class="article-date">
+  <time datetime="2015-07-23T10:35:40.000Z" itemprop="datePublished">2015-07-23</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/07/23/关于类和指针的用法（2）/">类的使用方法2</a>
+    <h1 class="article-title" itemprop="name">
+      类的使用方法2
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/07/22/关于类和指针的用法（1）/" class="archive-article-date">
-  <time datetime="2015-07-22T11:52:14.000Z" itemprop="datePublished">7月 22</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/07/22/关于类和指针的用法（1）/">关于指针的用法（1）</a>
-    </h1>
-  
+        <p>pragma mark - Get&amp;Set</p>
+<pre><code><span class="function"><span class="keyword">int</span> <span class="title">identity</span><span class="params">()</span> <span class="keyword">const</span> </span>{ <span class="keyword">return</span> identity_; }
+<span class="function"><span class="keyword">void</span> <span class="title">set_identity</span><span class="params">(<span class="keyword">int</span> identity)</span> </span>{ identity_ = identity; }
+<span class="comment">//set一般是赋值操作，get一般是取值操作</span>
+</code></pre><p>遍历操作</p>
+<pre><code><span class="tag">for</span> (<span class="tag">auto</span> <span class="rule"><span class="attribute">p </span>:<span class="value"> users)
+       {
+           p-&gt;<span class="function">PrintNamePrice</span>()</span></span>;
+       }
+</code></pre><p>list的使用方法（list是一个容器）</p>
+<pre><code><span class="function"><span class="keyword">void</span> <span class="title">set_identity</span><span class="params">(<span class="keyword">int</span> identity)</span> </span>{ identity_ = identity; }
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/07/21/指针的用法/" class="archive-article-date">
-  <time datetime="2015-07-21T11:46:58.000Z" itemprop="datePublished">7月 21</time>
-</a>
+
+u-&gt;set_identity(users.size());<span class="comment">//users.size表示list这个容器的长度。通过调用set_identity函数，给identity_赋值，其值为当list这个容器的长度</span>
+</code></pre>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/07/21/指针的用法/">指针的用法</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/07/20/static-的使用方法/" class="archive-article-date">
-  <time datetime="2015-07-20T12:02:55.000Z" itemprop="datePublished">7月 20</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blacklvhui.github.io/2015/07/23/关于类和指针的用法（2）/" data-id="cicg4tcx30002fjge5e2apmd6" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/07/20/static-的使用方法/">static 的使用方法</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/07/17/hello-world/" class="archive-article-date">
-  <time datetime="2015-07-17T12:26:19.000Z" itemprop="datePublished">7月 17</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/07/17/hello-world/">Hello World</a>
-    </h1>
-  
-
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/07/22/关于类和指针的用法（1）/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">关于指针的用法（1）</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
 </section>
         
           <aside id="sidebar">
