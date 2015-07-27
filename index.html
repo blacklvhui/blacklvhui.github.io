@@ -126,7 +126,7 @@ v1 ！= v2
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/27/关于标准库类型vector/" data-id="cicltl4qz0005rsgefnu5a5d6" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/27/关于标准库类型vector/" data-id="cicltx9450005elgec23kouly" class="article-share-link">Share</a>
       
       
     </footer>
@@ -170,11 +170,25 @@ my<span class="number">_</span>exciting<span class="number">_</span>local<span c
 my<span class="number">_</span>exciting<span class="number">_m</span>ember<span class="number">_</span><span class="annotation">variable</span><span class="number">_</span>
 </code></pre><p>写程序时，尽量调理清晰，任何事物都可以看作是对象，可以采用类使调理、逻辑清晰。</p>
 <p>有些时候写判断、循环的时候写while（a == 1） 不如写while(a != 0)，一定要考虑清楚。</p>
+<p>构造函数和析构函数</p>
+<pre><code><span class="id">#pragma</span> <span class="tag">mark</span> <span class="tag">-</span> <span class="tag">Init</span>
+<span class="rule"><span class="attribute">public</span>:<span class="value">
+    <span class="function">User</span>()</span></span>;
+    ~<span class="tag">User</span>();
+</code></pre><p>初始化方法：</p>
+<pre><code><span class="tag">User</span><span class="pseudo">::User</span>():
+<span class="tag">identity_</span>(<span class="number">0</span>),
+<span class="tag">name_</span>(<span class="string">"no na1me"</span>),
+<span class="tag">price_</span>(<span class="number">0.0</span>)
+{
+}
 
+<span class="tag">User</span>::~<span class="tag">User</span>() { }
+</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/24/关于类和指针的用法（3）/" data-id="cicltl4qv0002rsgencovws00" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/24/关于类和指针的用法（3）/" data-id="cicltx9420002elgedpa4net0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -225,7 +239,7 @@ add <span class="variable">control =</span> Control_L
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/23/ubuntu-14.04下怎样交换Caps和ctrl的位置/" data-id="cicltl4r00006rsge2lpzl6j4" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/23/ubuntu-14.04下怎样交换Caps和ctrl的位置/" data-id="cicltx9460006elge0ytp5lrr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -275,7 +289,7 @@ u-&gt;set_identity(users.size());<span class="comment">//users.size表示list这
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/23/关于类和指针的用法（2）/" data-id="cicltl4qw0003rsgevh27fr9t" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/23/关于类和指针的用法（2）/" data-id="cicltx9430003elgens1ni2p3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -355,7 +369,7 @@ u-&gt;InputName(str);<span class="comment">//调用了User的成员函数InputNa
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/22/关于类和指针的用法（1）/" data-id="cicltl4qx0004rsge5e6g72jr" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/22/关于类和指针的用法（1）/" data-id="cicltx9440004elgew82v4l83" class="article-share-link">Share</a>
       
       
     </footer>
@@ -433,7 +447,7 @@ u-&gt;InputName(str);<span class="comment">//调用了User的成员函数InputNa
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/21/指针的用法/" data-id="cicltl4qt0001rsgeouoh3g6b" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/21/指针的用法/" data-id="cicltx93z0001elge16otpfi8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -503,7 +517,7 @@ u-&gt;InputName(str);<span class="comment">//调用了User的成员函数InputNa
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/20/static的使用方法/" data-id="cicltl4r10007rsgerbgck2im" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/20/static的使用方法/" data-id="cicltx9480007elgerzqz9107" class="article-share-link">Share</a>
       
       
     </footer>
@@ -548,7 +562,7 @@ u-&gt;InputName(str);<span class="comment">//调用了User的成员函数InputNa
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/17/hello-world/" data-id="cicltl4qi0000rsgeh0gw62ta" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/17/hello-world/" data-id="cicltx93a0000elgeyxfwil0k" class="article-share-link">Share</a>
       
       
     </footer>
