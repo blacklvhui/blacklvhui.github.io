@@ -65,6 +65,208 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-友元类和友元函数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/28/友元类和友元函数/" class="article-date">
+  <time datetime="2015-07-28T08:18:42.000Z" itemprop="datePublished">2015-07-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/28/友元类和友元函数/">友元类和友元函数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>类可以允许其他类或者函数访问它的非公有成员，方法是令其他类或者函数成为它的友元。</p>
+<h1 id="友元类">友元类</h1><pre><code><span class="keyword">class</span> <span class="title">Merchant</span>
+{
+<span class="keyword">private</span> :
+    <span class="keyword">int</span> m_MyMoney;
+    <span class="keyword">int</span> m_MyRoom;
+    … …
+<span class="keyword">public</span>:
+    Friend <span class="keyword">class</span> <span class="title">Lawyer</span>; <span class="comment">//友元类的声明</span>
+    <span class="function">Int <span class="title">getmoney</span>(<span class="params"></span>)</span>;
+    … …
+};
+
+<span class="keyword">class</span> <span class="title">Lawyer</span> <span class="comment">//赋予Lawyer类为Merchant为友元，Lawyer类就有了访问Merchant类的私有数据</span>
+{
+<span class="keyword">private</span>:
+    … …
+<span class="keyword">public</span>:
+    … …
+};
+</code></pre><h1 id="友元函数">友元函数</h1><pre><code><span class="keyword">class</span> Merchant
+{
+<span class="keyword">private</span> :
+    <span class="keyword">int</span> m_MyMoney;
+    <span class="keyword">int</span> m_MyRoom;
+    … …
+<span class="keyword">public</span>:
+    <span class="function">Friend <span class="keyword">void</span> <span class="title">Lawyer</span><span class="params">(Merchant &amp;obj)</span></span>; <span class="comment">//友元函数的声明</span>
+    <span class="function">Int <span class="title">getmoney</span><span class="params">()</span></span>;
+    … …
+};
+
+<span class="function"><span class="keyword">void</span> <span class="title">Lawyer</span><span class="params">(Merchant &amp;obj)</span> <span class="comment">//赋予函数Lawyer为Merchant为友元，函数Lawyer就有了访问Merchant类的私有数据</span>
+<span class="comment">//不能写成Merchant::void Lawyer(Merchant &amp;obj)</span>
+</span>{
+    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; obj.m_MyMonry &lt;&lt; <span class="built_in">std</span>::endl;    
+}
+</code></pre><p>一个普通函数可以是多个类的友元函数</p>
+<pre><code><span class="keyword">class</span> Merchant
+{
+<span class="keyword">public</span>:
+    <span class="function">Friend <span class="keyword">void</span> <span class="title">Lawyer</span><span class="params">(Merchant &amp;obj)</span></span>; <span class="comment">//友元函数的声明</span>
+    <span class="function">Int <span class="title">getmoney</span><span class="params">()</span></span>;
+    … …
+<span class="keyword">private</span> :
+    <span class="keyword">int</span> m_MyMoney;
+    <span class="keyword">int</span> m_MyRoom;
+    … …
+};
+
+<span class="keyword">class</span> Country
+{
+<span class="keyword">public</span>:
+    <span class="function">Friend <span class="keyword">void</span> <span class="title">Lawyer</span><span class="params">(Merchant &amp;obj)</span></span>; <span class="comment">//友元函数的声明</span>
+    … …
+<span class="keyword">private</span>:
+    <span class="keyword">int</span> m_MyMoney;
+    … …
+};
+
+<span class="function"><span class="keyword">void</span> <span class="title">Lawyer</span><span class="params">(Merchant &amp;obj)</span> <span class="comment">//赋予函数Lawyer为Merchant为友元，函数Lawyer就有了访问Merchant类的私有数据</span>
+<span class="comment">//不能写成Merchant::void Lawyer(Merchant &amp;obj)</span>
+</span>{
+    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; obj.m_MyMonry &lt;&lt; <span class="built_in">std</span>::endl;    
+}
+</code></pre><p>一个类的成员函数函数也可以是另一个类的友元，从而可以使得一个类的成员函数可以操作另一个类的数据成员</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">Merchant</span>
+{</span>
+<span class="string">public:</span>
+    <span class="typename">void</span> Lawyer(Merchant &amp;obj) <span class="comment">//成员函数的声明</span>
+    Int getmoney();
+    … …
+<span class="string">private :</span>
+    <span class="typename">int</span> m_MyMoney;
+    <span class="typename">int</span> m_MyRoom;
+    … …
+};
+
+<span class="class"><span class="keyword">class</span> <span class="title">Country</span>
+{</span>
+<span class="string">public:</span>
+    Friend <span class="typename">void</span> <span class="string">Merchant:</span>:Lawyer(Merchant &amp;obj); <span class="comment">//友元函数的声明</span>
+    … …
+<span class="string">private:</span>
+    <span class="typename">int</span> m_MyMoney;
+    … …
+};
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blacklvhui.github.io/2015/07/28/友元类和友元函数/" data-id="cicn3iike0002qoger5ejq8fa" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-C-命名空间" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/28/C-命名空间/" class="article-date">
+  <time datetime="2015-07-28T06:50:41.000Z" itemprop="datePublished">2015-07-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/28/C-命名空间/">C++命名空间</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="命名空间（Namespaces）">命名空间（Namespaces）</h1><p>我们可以将一组    全局范围有效的类/对象或函数组织到一个名字下面。换种说法，就是它将全局范围分割成许多子域范围，每个子域范围叫做一个命名空间。</p>
+<pre><code><span class="preprocessor">#<span class="keyword">include</span> &lt;iostream&gt;</span>
+
+<span class="keyword">namespace</span> first {
+    <span class="keyword">int</span> var = <span class="number">5</span>;
+}
+
+<span class="keyword">namespace</span> second {
+    <span class="keyword">double</span> var = <span class="number">3.1416</span>;
+}
+
+<span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>{
+
+    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; first::var &lt;&lt; <span class="built_in">std</span>::endl;
+    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; (second::var)*(first::var) &lt;&lt; <span class="built_in">std</span>::endl;
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+
+输出的结果为：
+    <span class="number">5</span>
+    <span class="number">15.708</span>
+</code></pre><h1 id="命名空间的使用">命名空间的使用</h1><pre><code><span class="preprocessor">#<span class="keyword">include</span> &lt;iostream&gt;</span>
+
+<span class="keyword">namespace</span> first {
+    <span class="keyword">int</span> var = <span class="number">5</span>;
+}
+
+<span class="keyword">namespace</span> second {
+    <span class="keyword">double</span> var = <span class="number">3.1416</span>;
+}
+
+<span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>{
+    <span class="keyword">using</span> <span class="keyword">namespace</span> second;
+    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; var &lt;&lt; <span class="built_in">std</span>::endl;
+    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; (var*<span class="number">2</span>) &lt;&lt; <span class="built_in">std</span>::endl;
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+
+输出结果为：
+    <span class="number">3.1416</span>
+    <span class="number">6.2832</span>
+</code></pre><h1 id="别名定义">别名定义</h1><p>我们可以为已经存在的命名空间定义别名</p>
+<pre><code><span class="keyword">namespace</span> <span class="title">new_name</span>=current_name
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blacklvhui.github.io/2015/07/28/C-命名空间/" data-id="cicn3iik70000qoge0sq1zbo9" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-关于标准库类型vector" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/07/27/关于标准库类型vector/" class="article-date">
@@ -126,7 +328,7 @@ v1 ！= v2
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/27/关于标准库类型vector/" data-id="cicltyy7v0005l9gey0emhz5n" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/27/关于标准库类型vector/" data-id="cicn3iikl0006qogeoi0mep0i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -187,7 +389,7 @@ my<span class="number">_</span>exciting<span class="number">_m</span>ember<span 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/24/关于类和指针的用法（3）/" data-id="cicltyy7r0002l9geqoq4ee61" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/24/关于类和指针的用法（3）/" data-id="cicn3iikf0003qoged0mm16p0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -238,7 +440,7 @@ add <span class="variable">control =</span> Control_L
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/23/ubuntu-14.04下怎样交换Caps和ctrl的位置/" data-id="cicltyy7w0006l9gejqex281g" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/23/ubuntu-14.04下怎样交换Caps和ctrl的位置/" data-id="cicn3iikm0007qoge9oa1lpyh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -288,7 +490,7 @@ u-&gt;set_identity(users.size());<span class="comment">//users.size表示list这
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/23/关于类和指针的用法（2）/" data-id="cicltyy7s0003l9gek5m0npmu" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/23/关于类和指针的用法（2）/" data-id="cicn3iikh0004qoge6bbcz2gk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -368,7 +570,7 @@ u-&gt;InputName(str);<span class="comment">//调用了User的成员函数InputNa
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/22/关于类和指针的用法（1）/" data-id="cicltyy7t0004l9gellafs9yf" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/22/关于类和指针的用法（1）/" data-id="cicn3iiki0005qogeaqnhb1jt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -446,7 +648,7 @@ u-&gt;InputName(str);<span class="comment">//调用了User的成员函数InputNa
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/21/指针的用法/" data-id="cicltyy7p0001l9ge0wsi750q" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/21/指针的用法/" data-id="cicn3iikc0001qoge3diklmdp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -516,7 +718,7 @@ u-&gt;InputName(str);<span class="comment">//调用了User的成员函数InputNa
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/20/static的使用方法/" data-id="cicltyy7x0007l9gekryecu06" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/20/static的使用方法/" data-id="cicn3iiko0008qogezon8vvir" class="article-share-link">Share</a>
       
       
     </footer>
@@ -561,7 +763,7 @@ u-&gt;InputName(str);<span class="comment">//调用了User的成员函数InputNa
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/17/hello-world/" data-id="cicltyy710000l9gewhsvf62d" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/17/hello-world/" data-id="cicn3iikp0009qogexjszords" class="article-share-link">Share</a>
       
       
     </footer>
@@ -586,7 +788,7 @@ u-&gt;InputName(str);<span class="comment">//调用了User的成员函数InputNa
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">8</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">10</span></li></ul>
     </div>
   </div>
 
@@ -598,6 +800,14 @@ u-&gt;InputName(str);<span class="comment">//调用了User的成员函数InputNa
       <ul>
         
           <li>
+            <a href="/2015/07/28/友元类和友元函数/">友元类和友元函数</a>
+          </li>
+        
+          <li>
+            <a href="/2015/07/28/C-命名空间/">C++命名空间</a>
+          </li>
+        
+          <li>
             <a href="/2015/07/27/关于标准库类型vector/">关于标准库类型vector</a>
           </li>
         
@@ -607,14 +817,6 @@ u-&gt;InputName(str);<span class="comment">//调用了User的成员函数InputNa
         
           <li>
             <a href="/2015/07/23/ubuntu-14.04下怎样交换Caps和ctrl的位置/">ubuntu 14.04下怎样交换Caps和ctrl的位置</a>
-          </li>
-        
-          <li>
-            <a href="/2015/07/23/关于类和指针的用法（2）/">关于类和指针的用法（2）</a>
-          </li>
-        
-          <li>
-            <a href="/2015/07/22/关于类和指针的用法（1）/">关于类和指针的用法（1）</a>
           </li>
         
       </ul>
