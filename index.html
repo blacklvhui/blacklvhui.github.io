@@ -65,6 +65,109 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-C++继承" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/28/C++继承/" class="article-date">
+  <time datetime="2015-07-28T11:55:08.000Z" itemprop="datePublished">2015-07-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/28/C++继承/">C++继承</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>通过继承机制，可以利用已有的数据类型来定义新的数据类型。所定义的新的数据类型不仅拥有新定义的成员，而且还同时拥有旧的成员。<br>A类继承B类，我们称B类为“基类”，也称为“父类”，A类则相应地被称为“派生类”或“子类”。A类继承了B类之后，A类就具有了B类的部分成员。</p>
+<h1 id="单继承的定义格式">单继承的定义格式</h1><pre><code><span class="class"><span class="keyword">class</span><span class="inheritance">&lt;</span>派生类名&gt;:<span class="inheritance">&lt;</span>继承方式&gt;<span class="inheritance">&lt;</span>基类名&gt;</span>
+{
+&lt;派生类新定义成员&gt;
+};
+</code></pre><p>有如下三种继承方式：<br>1.公有继承（public）<br>2.保护继承（protected）<br>3.私有继承（private）</p>
+<pre><code>在派生类内部：
+                <span class="keyword">public</span>       <span class="keyword">protected</span>       <span class="keyword">private</span>
+    共有继承     <span class="keyword">public</span>          <span class="keyword">protected</span>          不可见
+    私有继承    <span class="keyword">private</span>          <span class="keyword">private</span>          不可见
+    保护继承    <span class="keyword">protected</span>     <span class="keyword">protected</span>          不可见
+
+在派生类外部：
+                <span class="keyword">public</span>          <span class="keyword">protected</span>          <span class="keyword">private</span>
+    共有继承     <span class="keyword">public</span>            不可见               不可见
+    私有继承     不可见          不可见            不可见
+    保护继承     不可见          不可见            不可见
+</code></pre><h1 id="继承示例（公有继承）：">继承示例（公有继承）：</h1><p>在Master.h中</p>
+<pre><code><span class="keyword">class</span> <span class="title">Master</span>
+{
+
+<span class="preprocessor">#<span class="keyword">pragma</span> mark - Init</span>
+<span class="keyword">public</span>:
+    Master();
+    ~Master();
+
+<span class="preprocessor">#<span class="keyword">pragma</span> mark - Get&amp;Set</span>
+<span class="keyword">public</span>:
+    <span class="function"><span class="keyword">void</span> <span class="title">OutPutPublic</span>(<span class="params"></span>)</span>;
+
+<span class="keyword">protected</span>:
+    <span class="function"><span class="keyword">void</span> <span class="title">OutPutProtected</span>(<span class="params"></span>)</span>;
+
+<span class="preprocessor">#<span class="keyword">pragma</span> mark - Variable</span>
+<span class="keyword">private</span>:
+    <span class="function"><span class="keyword">void</span> <span class="title">OutPutPrivate</span>(<span class="params"></span>)</span>;
+};
+</code></pre><p>在Master.cpp中</p>
+<pre><code><span class="preprocessor">#<span class="keyword">include</span> "Master.h"</span>
+<span class="preprocessor">#<span class="keyword">include</span>&lt;iostream&gt;</span>
+
+Master::Master()
+{
+}
+
+<span class="keyword">void</span> Master::OutPutPublic()
+{
+    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"This is a Public Method"</span> &lt;&lt; <span class="built_in">std</span>::endl;
+}
+
+<span class="keyword">void</span> Master::OutPutProtected()
+{
+    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"This is a Protected Method"</span> &lt;&lt; <span class="built_in">std</span>::endl;
+}
+
+<span class="keyword">void</span> Master::OutPutPrivate()
+{
+    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"This is a Private Method"</span> &lt;&lt; <span class="built_in">std</span>::endl;
+}
+</code></pre><p>若类A要用公有继承方式继承类Master</p>
+<p>在A.h中<br>    class A : public Master<br>    {<br>    public:<br>        void PublicMethod();<br>    };</p>
+<p>在A.cpp中</p>
+<pre><code>void <span class="tag">A</span><span class="value">::<span class="function">PublicMethod</span>()
+{
+    <span class="function">OutPutPublic</span>();</span>  <span class="comment">//由于是公有继承，所以子类A可以访问基类Master的公有成员和保护成员</span>
+    <span class="function">OutPutProtected</span>();
+}
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blacklvhui.github.io/2015/07/28/C++继承/" data-id="cicnbdxzw0000elgejapcdeex" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-友元类和友元函数" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/07/28/友元类和友元函数/" class="article-date">
@@ -178,7 +281,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/28/友元类和友元函数/" data-id="cicn3iike0002qoger5ejq8fa" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/28/友元类和友元函数/" data-id="cicnbdy070002elgek4gg8epa" class="article-share-link">Share</a>
       
       
     </footer>
@@ -257,7 +360,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/28/C-命名空间/" data-id="cicn3iik70000qoge0sq1zbo9" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/28/C-命名空间/" data-id="cicnbdy0i000aelge942if139" class="article-share-link">Share</a>
       
       
     </footer>
@@ -328,7 +431,7 @@ v1 ！= v2
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/27/关于标准库类型vector/" data-id="cicn3iikl0006qogeoi0mep0i" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/27/关于标准库类型vector/" data-id="cicnbdy0c0006elgeo2ahb8ll" class="article-share-link">Share</a>
       
       
     </footer>
@@ -389,7 +492,7 @@ my<span class="number">_</span>exciting<span class="number">_m</span>ember<span 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/24/关于类和指针的用法（3）/" data-id="cicn3iikf0003qoged0mm16p0" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/24/关于类和指针的用法（3）/" data-id="cicnbdy090003elgemhkk5e74" class="article-share-link">Share</a>
       
       
     </footer>
@@ -440,7 +543,7 @@ add <span class="variable">control =</span> Control_L
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/23/ubuntu-14.04下怎样交换Caps和ctrl的位置/" data-id="cicn3iikm0007qoge9oa1lpyh" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/23/ubuntu-14.04下怎样交换Caps和ctrl的位置/" data-id="cicnbdy0e0007elgehjodti02" class="article-share-link">Share</a>
       
       
     </footer>
@@ -490,7 +593,7 @@ u-&gt;set_identity(users.size());<span class="comment">//users.size表示list这
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/23/关于类和指针的用法（2）/" data-id="cicn3iikh0004qoge6bbcz2gk" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/23/关于类和指针的用法（2）/" data-id="cicnbdy0a0004elgelhtn5hid" class="article-share-link">Share</a>
       
       
     </footer>
@@ -570,7 +673,7 @@ u-&gt;InputName(str);<span class="comment">//调用了User的成员函数InputNa
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/22/关于类和指针的用法（1）/" data-id="cicn3iiki0005qogeaqnhb1jt" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/22/关于类和指针的用法（1）/" data-id="cicnbdy0b0005elge0hkt0dwm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -648,7 +751,7 @@ u-&gt;InputName(str);<span class="comment">//调用了User的成员函数InputNa
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/21/指针的用法/" data-id="cicn3iikc0001qoge3diklmdp" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/21/指针的用法/" data-id="cicnbdy060001elgeowxg8ouh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -718,7 +821,7 @@ u-&gt;InputName(str);<span class="comment">//调用了User的成员函数InputNa
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/20/static的使用方法/" data-id="cicn3iiko0008qogezon8vvir" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/20/static的使用方法/" data-id="cicnbdy0f0008elged6kx4g6r" class="article-share-link">Share</a>
       
       
     </footer>
@@ -728,51 +831,10 @@ u-&gt;InputName(str);<span class="comment">//调用了User的成员函数InputNa
 
 
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/07/17/hello-world/" class="article-date">
-  <time datetime="2015-07-17T12:26:19.000Z" itemprop="datePublished">2015-07-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/17/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/17/hello-world/" data-id="cicn3iikp0009qogexjszords" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 </section>
         
@@ -788,7 +850,7 @@ u-&gt;InputName(str);<span class="comment">//调用了User的成员函数InputNa
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">10</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">11</span></li></ul>
     </div>
   </div>
 
@@ -798,6 +860,10 @@ u-&gt;InputName(str);<span class="comment">//调用了User的成员函数InputNa
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/07/28/C++继承/">C++继承</a>
+          </li>
         
           <li>
             <a href="/2015/07/28/友元类和友元函数/">友元类和友元函数</a>
@@ -813,10 +879,6 @@ u-&gt;InputName(str);<span class="comment">//调用了User的成员函数InputNa
         
           <li>
             <a href="/2015/07/24/关于类和指针的用法（3）/">关于类和指针的用法（3）</a>
-          </li>
-        
-          <li>
-            <a href="/2015/07/23/ubuntu-14.04下怎样交换Caps和ctrl的位置/">ubuntu 14.04下怎样交换Caps和ctrl的位置</a>
           </li>
         
       </ul>
