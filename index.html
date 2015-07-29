@@ -65,6 +65,166 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-C++多态" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/29/C++多态/" class="article-date">
+  <time datetime="2015-07-29T08:54:18.000Z" itemprop="datePublished">2015-07-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/29/C++多态/">C++多态</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>多态性可以简单地概括为“一个接口，多种方法”，程序在运行时才决定调用的函数，它是面向对象编程领域的核心概念。多态(polymorphism)，字面意思多种形状。<br>多态的目的：多口重用</p>
+<p>定义一个People类</p>
+<pre><code><span class="preprocessor">#<span class="keyword">include</span> &lt;iostream&gt;</span>
+
+<span class="keyword">class</span> People
+{
+<span class="preprocessor">#<span class="keyword">pragma</span> mark - Init</span>
+<span class="keyword">public</span>:
+    People();
+    ~People();
+
+<span class="preprocessor">#<span class="keyword">pragma</span> mark - Method</span>
+<span class="keyword">public</span>:
+    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Speak</span><span class="params">()</span></span>;  <span class="comment">//虚函数</span>
+
+<span class="preprocessor">#<span class="keyword">pragma</span> mark - get&amp;set</span>
+<span class="keyword">public</span>:
+
+
+<span class="preprocessor">#<span class="keyword">pragma</span> mark - Variable</span>
+<span class="keyword">private</span>:
+    <span class="built_in">std</span>::<span class="built_in">string</span> name_;
+    <span class="built_in">std</span>::<span class="built_in">string</span> gender_;
+    <span class="keyword">int</span> age_;
+    <span class="keyword">double</span> hight_;
+    <span class="keyword">double</span> weight_;
+};
+</code></pre><p>People.cpp</p>
+<pre><code><span class="preprocessor">#<span class="keyword">include</span> "People.h"</span>
+
+People::People()
+{}
+People::~People()
+{}
+
+<span class="keyword">void</span> People::Speak()
+{
+    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"I'm a people"</span> &lt;&lt; <span class="built_in">std</span>::endl;
+}
+</code></pre><p>Yellowpeople.h</p>
+<pre><code><span class="preprocessor">#<span class="keyword">include</span> "People.h"</span>
+
+<span class="keyword">class</span> YellowPeople : <span class="keyword">public</span> People   <span class="comment">//继承</span>
+{
+<span class="keyword">public</span>:
+    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Speak</span><span class="params">()</span></span>;
+
+    <span class="function"><span class="keyword">void</span> <span class="title">shout</span><span class="params">()</span></span>;
+};
+</code></pre><p>Yellowpeople.cpp</p>
+<pre><code><span class="preprocessor">#<span class="keyword">include</span> "YellowPeople.h"</span>
+
+<span class="keyword">void</span> YellowPeople::Speak()
+{
+    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"I'm a yellow people"</span> &lt;&lt;<span class="built_in">std</span>::endl;
+}
+</code></pre><p>Whitepeople.h</p>
+<pre><code><span class="preprocessor">#<span class="keyword">include</span> "People.h"</span>
+
+<span class="keyword">class</span> WhitePeople : <span class="keyword">public</span> People
+{
+<span class="keyword">public</span>:
+    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Speak</span><span class="params">()</span></span>;
+};
+</code></pre><p>Whitepeople.cpp</p>
+<pre><code><span class="preprocessor">#<span class="keyword">include</span> "WhitePeople.h"</span>
+
+<span class="keyword">void</span> WhitePeople::Speak()
+{
+    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"I'm a white people"</span> &lt;&lt;<span class="built_in">std</span>::endl;
+}
+</code></pre><p>Blackpeople.h</p>
+<pre><code><span class="preprocessor">#<span class="keyword">include</span> "People.h"</span>
+
+<span class="keyword">class</span> BlackPeople : <span class="keyword">public</span> People
+{
+<span class="keyword">public</span>:
+    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Speak</span><span class="params">()</span></span>;
+
+};
+</code></pre><p>Blackpeople.cpp</p>
+<pre><code><span class="preprocessor">#<span class="keyword">include</span> "BlackPeople.h"</span>
+
+<span class="keyword">void</span> BlackPeople::Speak()
+{
+    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"I'm a black people"</span> &lt;&lt; <span class="built_in">std</span>::endl;
+}
+</code></pre><p>main.cpp</p>
+<pre><code><span class="preprocessor">#<span class="keyword">include</span> &lt;iostream&gt;</span>
+<span class="preprocessor">#<span class="keyword">include</span> "YellowPeople.h"</span>
+<span class="preprocessor">#<span class="keyword">include</span> "WhitePeople.h"</span>
+<span class="preprocessor">#<span class="keyword">include</span> "BlackPeople.h"</span>
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;
+
+<span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(People &amp;obj)</span>         <span class="comment">//使用基类People中的Speak（）函数</span>
+</span>{
+    obj.Speak();
+}
+
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>
+</span>{
+    People people;
+    YellowPeople yellow;
+    WhitePeople white;
+    BlackPeople black;
+
+    people.Speak();
+    yellow.Speak();
+    yellow.shout();
+    white.Speak();
+    black.Speak();
+
+    test(people);          <span class="comment">//体现了多态</span>
+    test(yellow);
+    test(white);
+    test(black);
+
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre><p>输入结果为：</p>
+<pre><code>I<span class="comment">'m a people</span>
+I<span class="comment">'m a yellow people</span>
+I<span class="comment">'m a white people</span>
+I<span class="comment">'m a black people</span>
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blacklvhui.github.io/2015/07/29/C++多态/" data-id="cicomzvmz0000wsgeicapko5t" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-C++继承" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/07/28/C++继承/" class="article-date">
@@ -158,7 +318,7 @@ Master::Master()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/28/C++继承/" data-id="cicnbdxzw0000elgejapcdeex" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/28/C++继承/" data-id="cicomzvni000bwsge0xe7xsg0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -281,7 +441,7 @@ Master::Master()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/28/友元类和友元函数/" data-id="cicnbdy070002elgek4gg8epa" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/28/友元类和友元函数/" data-id="cicomzvn50002wsgedq74rv2r" class="article-share-link">Share</a>
       
       
     </footer>
@@ -360,7 +520,7 @@ Master::Master()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/28/C-命名空间/" data-id="cicnbdy0i000aelge942if139" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/28/C-命名空间/" data-id="cicomzvng000awsgere7vfjox" class="article-share-link">Share</a>
       
       
     </footer>
@@ -431,7 +591,7 @@ v1 ！= v2
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/27/关于标准库类型vector/" data-id="cicnbdy0c0006elgeo2ahb8ll" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/27/关于标准库类型vector/" data-id="cicomzvna0006wsgedeaba1f1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -492,7 +652,7 @@ my<span class="number">_</span>exciting<span class="number">_m</span>ember<span 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/24/关于类和指针的用法（3）/" data-id="cicnbdy090003elgemhkk5e74" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/24/关于类和指针的用法（3）/" data-id="cicomzvn60003wsgeuya9l4cb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -543,7 +703,7 @@ add <span class="variable">control =</span> Control_L
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/23/ubuntu-14.04下怎样交换Caps和ctrl的位置/" data-id="cicnbdy0e0007elgehjodti02" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/23/ubuntu-14.04下怎样交换Caps和ctrl的位置/" data-id="cicomzvnc0007wsgefgizigiy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -593,7 +753,7 @@ u-&gt;set_identity(users.size());<span class="comment">//users.size表示list这
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/23/关于类和指针的用法（2）/" data-id="cicnbdy0a0004elgelhtn5hid" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/23/关于类和指针的用法（2）/" data-id="cicomzvn80004wsgeeghndem7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -673,7 +833,7 @@ u-&gt;InputName(str);<span class="comment">//调用了User的成员函数InputNa
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/22/关于类和指针的用法（1）/" data-id="cicnbdy0b0005elge0hkt0dwm" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/22/关于类和指针的用法（1）/" data-id="cicomzvn90005wsge2ix4pu5l" class="article-share-link">Share</a>
       
       
     </footer>
@@ -751,77 +911,7 @@ u-&gt;InputName(str);<span class="comment">//调用了User的成员函数InputNa
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/21/指针的用法/" data-id="cicnbdy060001elgeowxg8ouh" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-static的使用方法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/07/20/static的使用方法/" class="article-date">
-  <time datetime="2015-07-20T12:02:55.000Z" itemprop="datePublished">2015-07-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/20/static的使用方法/">static的使用方法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="http://blacklvhui.github.io">blacklvhui</a><br>static是静态变量的一种用法，例如：static int n;<br>用了static，在函数内部时，另一个函数对static所在函数进行调用，当static所在函数执行过后，static定义的变量值不会返回初值，他会发生改变并且不会释放内存。<br>例如：</p>
-<pre><code><span class="preprocessor">#<span class="keyword">include</span>&lt;iostream&gt;</span>
-
-<span class="function"><span class="keyword">int</span> <span class="title">f</span><span class="params">()</span>
-</span>{
-    <span class="keyword">static</span> <span class="keyword">int</span> a=<span class="number">0</span>; <span class="comment">// 初始化a，使用static关键字后，只在第一次调用的时候初始化a，并且a只会被初始化一次</span>
-    a++;　<span class="comment">//　a = 1</span>
-
-    <span class="keyword">return</span> a; <span class="comment">// return 1</span>
-}
-
-<span class="function"><span class="keyword">int</span> <span class="title">fn</span><span class="params">()</span>
-</span>{
-    <span class="keyword">int</span> a = <span class="number">0</span>;　<span class="comment">// 每次调用该函数时都会初始化a</span>
-    a++;    <span class="comment">// a = 1</span>
-
-    <span class="keyword">return</span> a; <span class="comment">// return 1</span>
-}
-
-<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>
-</span>{
-    <span class="comment">// 调用用static修饰变量的函数f()</span>
-    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; f() &lt;&lt; <span class="built_in">std</span>::endl; <span class="comment">// 输出1</span>
-    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; f() &lt;&lt; <span class="built_in">std</span>::endl; <span class="comment">// 输出2</span>
-    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; f() &lt;&lt; <span class="built_in">std</span>::endl; <span class="comment">// 输出3</span>
-    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; f() &lt;&lt; <span class="built_in">std</span>::endl; <span class="comment">// 输出4</span>
-
-    <span class="comment">// 调用没有用static修饰变量的函数f()</span>
-    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; fn() &lt;&lt; <span class="built_in">std</span>::endl; <span class="comment">// 输出1</span>
-    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; fn() &lt;&lt; <span class="built_in">std</span>::endl; <span class="comment">// 输出1</span>
-    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; fn() &lt;&lt; <span class="built_in">std</span>::endl; <span class="comment">// 输出1</span>
-    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; fn() &lt;&lt; <span class="built_in">std</span>::endl; <span class="comment">// 输出1</span>
-    <span class="keyword">return</span> <span class="number">0</span>;
-}
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://blacklvhui.github.io/2015/07/20/static的使用方法/" data-id="cicnbdy0f0008elged6kx4g6r" class="article-share-link">Share</a>
+      <a data-url="http://blacklvhui.github.io/2015/07/21/指针的用法/" data-id="cicomzvn30001wsgevl8gorff" class="article-share-link">Share</a>
       
       
     </footer>
@@ -850,7 +940,7 @@ u-&gt;InputName(str);<span class="comment">//调用了User的成员函数InputNa
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">11</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">12</span></li></ul>
     </div>
   </div>
 
@@ -860,6 +950,10 @@ u-&gt;InputName(str);<span class="comment">//调用了User的成员函数InputNa
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/07/29/C++多态/">C++多态</a>
+          </li>
         
           <li>
             <a href="/2015/07/28/C++继承/">C++继承</a>
@@ -875,10 +969,6 @@ u-&gt;InputName(str);<span class="comment">//调用了User的成员函数InputNa
         
           <li>
             <a href="/2015/07/27/关于标准库类型vector/">关于标准库类型vector</a>
-          </li>
-        
-          <li>
-            <a href="/2015/07/24/关于类和指针的用法（3）/">关于类和指针的用法（3）</a>
           </li>
         
       </ul>
